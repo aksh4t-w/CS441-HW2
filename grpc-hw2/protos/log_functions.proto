@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package log_functions;
+
+service Invoke_Functions {
+	rpc check_message_presence (TimeStampRequest) returns (TimeStampPresence) {}
+	rpc get_matched_logs (TimeStampRequest) returns (MatchedLogs) {}
+}
+
+message TimeStampRequest {
+	string timestamp = 1;
+	string dT = 2;
+	string logFile = 3;
+	string getX = 4;
+}
+
+message TimeStampPresence {
+	bool message = 1;
+	int32 statusCode = 2;
+}
+
+message MatchedLogs {
+	repeated string logs = 1;
+	int32 statusCode = 2;
+}
