@@ -1,5 +1,4 @@
 import grpc
-import time
 import logging
 import log_functions_pb2_grpc
 import log_functions_pb2
@@ -9,9 +8,6 @@ def run():
     print("Will try to search the logs ...")
     with grpc.insecure_channel("localhost:50051") as channel:
         stub = log_functions_pb2_grpc.Invoke_FunctionsStub(channel)
-
-        # response = stub.SayHello(log_functions_pb2.HelloRequest(name="you"))
-        # print("Greeter client received: " + response.message)
 
         logging.info("Calling gRPC server for checking timestamp...")
         response1 = stub.check_message_presence(

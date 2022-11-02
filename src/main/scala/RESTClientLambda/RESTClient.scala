@@ -29,12 +29,17 @@ object RESTClient {
     // String inputs are encoded in UTF-8 for parsing.
     logger.info("Making a request to the lambda function's API gateway...")
 
-    logger.info("Making request to check if the timestamp is present in the log file.")
-    val response1 = scala.io.Source.fromURL(FunctionURL + "?getX=" + URLEncoder.encode(Task1, "UTF-8") + "&timestamp=" + URLEncoder.encode(timestamp, "UTF-8") + "&dT=" + URLEncoder.encode(dT, "UTF-8") + "&logFile=" + URLEncoder.encode("LogFileGenerator-3.log", "UTF-8"))
-    println("Response for task 1: " + response1.mkString)
+    try {
+      logger.info("Making request to check if the timestamp is present in the log file.")
+      val response1 = scala.io.Source.fromURL(FunctionURL + "?getX=" + URLEncoder.encode(Task1, "UTF-8") + "&timestamp=" + URLEncoder.encode(timestamp, "UTF-8") + "&dT=" + URLEncoder.encode(dT, "UTF-8") + "&logFile=" + URLEncoder.encode(LogFile, "UTF-8"))
+      println("Response for task 1: " + response1.mkString)
 
-    logger.info("Making request to check if the timestamp is present and getting the pattern matched logs in the given time interval in the log file.")
-    val response2 = scala.io.Source.fromURL(FunctionURL + "?getX=" + URLEncoder.encode(Task2, "UTF-8") + "&timestamp=" + URLEncoder.encode(timestamp, "UTF-8") + "&dT=" + URLEncoder.encode(dT, "UTF-8") + "&logFile=" + URLEncoder.encode("LogFileGenerator-3.log", "UTF-8"))
-    println("Response for task 2: " + response2.mkString)
+      logger.info("Making request to check if the timestamp is present and getting the pattern matched logs in the given time interval in the log file.")
+      val response2 = scala.io.Source.fromURL(FunctionURL + "?getX=" + URLEncoder.encode(Task2, "UTF-8") + "&timestamp=" + URLEncoder.encode(timestamp, "UTF-8") + "&dT=" + URLEncoder.encode(dT, "UTF-8") + "&logFile=" + URLEncoder.encode(LogFile, "UTF-8"))
+      println("Response for task 2: " + response2.mkString)
+    } catch
+    {
+      case e: java.io.FileNotFoundException => println("The timestamp is not present in the log file.")
+    }
   }
 }
