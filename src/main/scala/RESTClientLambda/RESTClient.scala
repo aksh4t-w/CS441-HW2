@@ -9,6 +9,7 @@ import java.util.logging.{Level, Logger}
 
 class RESTClient{}
 
+// REST client which performs calls to the API gateway for our lambda function.
 object RESTClient {
   val logger = CreateLogger(classOf[RESTClient])
 

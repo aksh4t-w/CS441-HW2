@@ -30,7 +30,6 @@ Demonstration of the project can be found here: https://youtu.be/o7ksl5x3D2g
 4) getX: Type of operation you want to perform i.e. "checkIfPresent" or "matchedLogs". Eg. getX="matchedLogs",
 ```
 
-
 ### 3) Running the gRPC client present in the grpc-hw2 directory.
 * Install the dependencies from requirements.txt file: 
 `pip install -r requirements. txt`
@@ -53,3 +52,7 @@ curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
 sudo yum install sbt
 ```
+* A scala script for copying files from ec2 to s3 bucket is included in the HelperUtils which can be useful for automatically transferring log files from EC2 instance to a S3 bucket.
+
+## Lambda Function.
+* The python file of the lambda function (lambda_function.py) is located in the directory grpc-hw2.
